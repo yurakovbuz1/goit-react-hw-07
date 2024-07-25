@@ -1,19 +1,17 @@
-import { deleteContact, selectContacts, selectContactsError, selectContactsLoading } from "../../store/contacts/contactsSlice";
+import { selectContacts, selectContactsError, selectContactsLoading } from "../../store/contacts/contactsSlice";
 import Contact from "../Contact/Contact";
 import css from './ContactList.module.css'
 import Loader from '../../components/Loader/Loader';
 import { selectNameFilter } from "../../store/filtersSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchContacts } from "../../store/contacts/contactsOps";
+import { deleteContact, fetchContacts } from "../../store/contacts/contactsOps";
 
 const ContactList = () => {
     const contacts = useSelector(selectContacts);
     const contactsLoading = useSelector(selectContactsLoading);
     const contactsError = useSelector(selectContactsError);
     const filterValue = useSelector(selectNameFilter);
-
-    console.log('contacts :>> ', contacts);
 
     let contactList;
     if (filterValue !== "") {
@@ -31,10 +29,8 @@ const ContactList = () => {
     },[dispatch])
 
     const handleDelete = (contactId) => {     
-        dispatch(deleteContact(contactId));   
+        dispatch(deleteContact(contactId));
     };    
-
-    console.log('contactList :>> ', contactList);
 
     return (
         <>
