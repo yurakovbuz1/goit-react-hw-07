@@ -45,11 +45,11 @@ export const contactsSlice = createSlice({
             .addCase(addContact.pending, (state) => {
                 state.contacts.loading = true;
             })   
-            .addCase(addContact.fulfilled, (state, response) => {
+            .addCase(addContact.fulfilled, (state, {payload}) => {
                 state.contacts.loading = false;
                 state.contacts.error = null;
-                // console.log('response :>> ', response);
-                state.contacts.items = payload;
+                state.contacts.items.push(payload);
+                console.log('payload :>> ', payload);
                 
             })
             .addCase(addContact.rejected, (state, { error }) => {
