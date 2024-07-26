@@ -1,32 +1,17 @@
-import { selectContacts, selectContactsError, selectContactsLoading } from "../../store/contacts/contactsSlice";
+import { selectContactsError, selectContactsLoading, selectFilteredContacts } from "../../store/contacts/contactsSlice";
 import Contact from "../Contact/Contact";
 import css from './ContactList.module.css'
 import Loader from '../../components/Loader/Loader';
 import { selectNameFilter } from "../../store/filtersSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { deleteContact, fetchContacts } from "../../store/contacts/contactsOps";
+import { deleteContact } from "../../store/contacts/contactsOps";
 
 const ContactList = () => {
-    const contacts = useSelector(selectContacts);
+    const contactList = useSelector(selectFilteredContacts);
     const contactsLoading = useSelector(selectContactsLoading);
     const contactsError = useSelector(selectContactsError);
-    const filterValue = useSelector(selectNameFilter);
-
-    let contactList;
-    if (filterValue !== "") {
-        contactList = contacts.filter(contact => 
-            contact.name.toLowerCase().includes(filterValue.toLowerCase())
-        )
-    } else {
-        contactList = contacts;
-    }
 
     const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     dispatch(fetchContacts())
-    // },[dispatch])
 
     const handleDelete = (contactId) => {     
         dispatch(deleteContact(contactId));
