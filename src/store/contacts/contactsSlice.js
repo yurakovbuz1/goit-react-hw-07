@@ -38,8 +38,6 @@ export const contactsSlice = createSlice({
                 state.contacts.loading = false;
                 state.contacts.error = null;
                 state.contacts.items.push(payload);
-                console.log('payload :>> ', payload);
-                
             })
             .addCase(addContact.rejected, (state, { payload }) => {
                 state.contacts.loading = false;
