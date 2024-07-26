@@ -1,9 +1,9 @@
-import { selectContactsError, selectContactsLoading, selectFilteredContacts } from "../../redux/contacts/contactsSlice";
+import { selectContactsError, selectContactsLoading, selectFilteredContacts } from "../../redux/contactsSlice";
 import Contact from "../Contact/Contact";
 import css from './ContactList.module.css'
 import Loader from '../../components/Loader/Loader';
 import { useDispatch, useSelector } from "react-redux";
-import { deleteContact } from "../../redux/contacts/contactsOps";
+import { deleteContact } from "../../redux/contactsOps";
 
 const ContactList = () => {
     const contactList = useSelector(selectFilteredContacts);
